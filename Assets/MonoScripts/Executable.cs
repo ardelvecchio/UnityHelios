@@ -13,6 +13,7 @@ using Pcx;
 using Application = UnityEngine.Application;
 using Button = UnityEngine.UI.Button;
 using SimpleFileBrowser;
+using Unity.VisualScripting;
 
 public class Executable : MonoBehaviour {
     //these also need to be attached to a game object
@@ -21,9 +22,11 @@ public class Executable : MonoBehaviour {
     [SerializeField] Text status;
     private List<GameObject> loaded = new List<GameObject>();
     private List<Pcx.PointCloudRenderer> pointCloud = new List<PointCloudRenderer>();
+    private Vector3 rotation;
     private string[] minvalues;
     private string[] maxvalues;
-    
+    [SerializeField] Slider axisSlider;
+    [SerializeField] private TMP_Text axistText;
     [SerializeField] Slider slider;
     [SerializeField] private TMP_Dropdown dropdown;
     [SerializeField] private GameObject panel;
@@ -35,6 +38,10 @@ public class Executable : MonoBehaviour {
     [SerializeField] private GameObject range;
     [SerializeField] private RawImage gradient;
     [SerializeField] private Slider pointSize;
+
+    private PointCloudRenderer pclRenderer;
+    private string activeModel;
+    private GameObject model;
     //[SerializeField] private TMP_Text pointValue;
     
     /*
@@ -69,6 +76,9 @@ public class Executable : MonoBehaviour {
     {
         
         Clear();
+        rotation = new Vector3();
+        axisSlider.value = 0;
+        axistText.text = "X";
         status.text = "Loading new model...";
         var stopwatch = new System.Diagnostics.Stopwatch();
         stopwatch.Start();
@@ -77,11 +87,13 @@ public class Executable : MonoBehaviour {
         float scale = float.Parse(scaleInputField.text, CultureInfo.InvariantCulture);
         quit.gameObject.SetActive(true);
         menu.gameObject.SetActive(true);
+        axisSlider.gameObject.SetActive(true);
         
         if (extension == ".obj")
         {
             // This line is all you need to load a model from file. Synchronous loading is also available with ObjParser.Parse()
-            var model = ObjParser.Parse(path, scale);
+            model = ObjParser.Parse(path, scale);
+            activeModel = "obj";
             stopwatch.Stop();
             status.text = $"Model loaded in {stopwatch.Elapsed}";
             loaded.Add(model);
@@ -103,11 +115,12 @@ public class Executable : MonoBehaviour {
         }
         else if (extension == ".xml")
         {
+            activeModel = "xml";
             FileReader fileReader = new FileReader();
             fileReader.processXML(path);
             string[] filepaths = fileReader.filepaths.ToArray();
             string[][] filedata = fileReader.asciiParams.ToArray();
-            var pclRenderer = gameObject.GetComponent<PointCloudRenderer>();
+            pclRenderer = gameObject.GetComponent<PointCloudRenderer>();
             var importer = new PlyImporter();
             //var cloud = importer.ImportAsPointCloudData("C:/Users/Alden/Documents/Helios/PLY/StanfordDragon.ply");
             var cloud = importer.ImportAsPointCloudDataXYZ(filepaths, filedata);
@@ -118,7 +131,7 @@ public class Executable : MonoBehaviour {
             
             Camera.main.transform.position = new Vector3(fileReader.origins[0], fileReader.origins[1], fileReader.origins[2] - 10);
             pointSize.value = pclRenderer.pointSize * 50;
-
+            
             
             /* this loads as mesh instead of point cloud buffer. its slower.
             var importer = new PlyImporter();
@@ -182,6 +195,7 @@ public class Executable : MonoBehaviour {
         
         loaded.Clear();
         pointCloud.Clear();
+        rotation = new Vector3();
         ObjParser.dataNames.Clear();
         ObjParser.colorList.Clear();
         pathInputField.text = "";
@@ -205,6 +219,54 @@ public class Executable : MonoBehaviour {
                 }
             }
             
+        }
+    }
+
+    public void ChangeAxis()
+    {
+        if (axistText.text == "X")
+        {
+            axistText.text = "Y";
+            axisSlider.value = rotation.y;
+            return;
+        }
+        if (axistText.text == "Y")
+        {
+            axistText.text = "Z";
+            axisSlider.value = rotation.z;
+            return;
+        }
+        if (axistText.text == "Z")
+        {
+            axistText.text = "X";
+            axisSlider.value = rotation.x;
+            return;
+        }
+    }
+
+    private void rotateObject()
+    {
+        if (axistText.text == "X")
+        {
+            rotation.x = axisSlider.value;
+        }
+        if (axistText.text == "Y")
+        {
+            rotation.y = axisSlider.value;
+        }
+        if (axistText.text == "Z")
+        {
+            rotation.z = axisSlider.value;
+        }
+
+        if (activeModel == "xml")
+        {
+            pclRenderer.transform.rotation = Quaternion.Euler(new Vector3(rotation.x * 360, rotation.y * 360, rotation.z * 360));
+        }
+
+        if (activeModel == "obj")
+        {
+            model.transform.rotation = Quaternion.Euler(new Vector3(rotation.x * 360, rotation.y * 360, rotation.z * 360));
         }
     }
 
@@ -279,6 +341,7 @@ public class Executable : MonoBehaviour {
         applyScale.gameObject.SetActive(false);
         gradient.gameObject.SetActive(false);
         pointSize.gameObject.SetActive(false);
+        axisSlider.gameObject.SetActive(false);
         minvalue.text = "";
         maxvalue.text = "";
         slider.value = 0;

@@ -12,6 +12,7 @@ public class Camera_Script : MonoBehaviour
     [SerializeField] private GameObject handles;
     [SerializeField] InputField pathInputField;
     [SerializeField] private GameObject pointCloudSlider;
+    [SerializeField] GameObject axisSlider;
     private Vector2 mouseAbsolute;
     private Vector2 smoothMouse;
     private Vector2 targetDirection;
@@ -43,6 +44,9 @@ public class Camera_Script : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject == pathInputField.gameObject) return;
         
         if (EventSystem.current.currentSelectedGameObject == pointCloudSlider) return;
+
+        if (EventSystem.current.currentSelectedGameObject == axisSlider.gameObject) return;
+        
         // Mouse look
         var targetOrientation = Quaternion.Euler(targetDirection);
 
@@ -71,67 +75,5 @@ public class Camera_Script : MonoBehaviour
 
         
     }
-    /*
-    [SerializeField] float speed = 0.05f;
-
-    public float lookSpeedH = 2f;
-    public float lookSpeedV = 2f;
-    public float zoomSpeed = 2f;
-    public float dragSpeed = 40f;
     
-    
-    
-    Camera cam;
-
-    private void Awake()
-    {
-        
-        cam = GetComponent<Camera>();
-        cam.transform.position = new Vector3(0, 0.7f, -2);
-        cam.transform.rotation = Quaternion.Euler(new Vector3(10, 0, 0));
-        private float yaw = Input.GetAxis("Mouse X");
-        private float pitch = Input.GetAxis("Mouse Y");
-        
-        //yaw = transform.eulerAngles.y;
-        //pitch = transform.eulerAngles.x;
-    }
-
-
-    void FixedUpdate()
-    {
-        Vector3 move = Vector3.zero;
-        if(Input.GetKey(KeyCode.W))
-            move += Vector3.forward * speed;
-        if (Input.GetKey(KeyCode.S))
-            move -= Vector3.forward * speed;
-        if (Input.GetKey(KeyCode.D))
-            move += Vector3.right * speed;
-        if (Input.GetKey(KeyCode.A))
-            move -= Vector3.right * speed;
-        if (Input.GetKey(KeyCode.E))
-            move += Vector3.up * speed;
-        if (Input.GetKey(KeyCode.Q))
-            move -= Vector3.up * speed;
-        transform.Translate(move);
-        
-        //Look around with Right Mouse
-        if (Input.GetMouseButton(0))
-        { 
-            yaw += lookSpeedH * Input.GetAxis("Mouse X");
-            pitch -= lookSpeedV * Input.GetAxis("Mouse Y");
-     
-            transform.eulerAngles = new Vector3(pitch, yaw, 0f);
-        }
-     
-        //drag camera around with Middle Mouse
-        if (Input.GetMouseButton(2))
-        {
-            transform.Translate(-Input.GetAxisRaw("Mouse X") * Time.deltaTime * dragSpeed,   -Input.GetAxisRaw("Mouse Y") * Time.deltaTime * dragSpeed, 0);
-        }
-     
-        //Zoom in and out with Mouse Wheel
-        transform.Translate(0, 0, Input.GetAxis("Mouse ScrollWheel") * zoomSpeed, Space.Self);
-        
-    }
-    */
 }

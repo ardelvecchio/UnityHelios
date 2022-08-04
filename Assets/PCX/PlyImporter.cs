@@ -658,6 +658,17 @@ namespace Pcx
                 int index_g = Array.IndexOf(dataOrder[i], "g");
                 int index_b = Array.IndexOf(dataOrder[i], "b");
 
+                int index_r255 = Array.IndexOf(dataOrder[i], "r255");
+                int index_g255 = Array.IndexOf(dataOrder[i], "g255");
+                int index_b255 = Array.IndexOf(dataOrder[i], "b255");
+
+                if (index_r < 0 || index_g < 0 || index_b < 0)
+                {
+                    index_b = index_b255;
+                    index_g = index_g255;
+                    index_r = index_r255;
+                }
+                
                 while (!streamReader.EndOfStream)
                 {
                     var line = streamReader.ReadLine();
@@ -666,10 +677,19 @@ namespace Pcx
                     x = float.Parse(values[index_x], NumberStyles.Float, ci);
                     y = float.Parse(values[index_y], NumberStyles.Float, ci);
                     z = float.Parse(values[index_z], NumberStyles.Float, ci);
-
-                    r = Byte.Parse(values[index_r], NumberStyles.Float, ci);
-                    g = Byte.Parse(values[index_g], NumberStyles.Float, ci);
-                    b = Byte.Parse(values[index_b], NumberStyles.Float, ci);
+                    
+                    if (index_r < 0 || index_g < 0 || index_b < 0)
+                    {
+                        r = 255;
+                        g = 255;
+                        b = 255;
+                    }
+                    else
+                    {
+                        r = Byte.Parse(values[index_r], NumberStyles.Float, ci);
+                        g = Byte.Parse(values[index_g], NumberStyles.Float, ci);
+                        b = Byte.Parse(values[index_b], NumberStyles.Float, ci);
+                    }
 
                     data.AddPoint(x, y, z, r, g, b, a);
                 }

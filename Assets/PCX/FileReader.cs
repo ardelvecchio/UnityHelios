@@ -24,7 +24,7 @@ public class FileReader
                     if (reader.Name == "filename")
                     {
                         reader.Read();
-                        filepaths.Add(AddFullPath(XMLpath, reader.Value.Trim()));
+                        filepaths.Add(reader.Value.Trim());
                     }
                     if (reader.Name == "ASCII_format")
                     {
@@ -57,7 +57,7 @@ public class FileReader
         this.origins[1] = y;
         this.origins[2] = z;
     }
-
+    /*
     private string AddFullPath(string pathA, string pathB)
     {
         var basePath = pathA.IndexOf("Helios");
@@ -66,4 +66,5 @@ public class FileReader
 
         return Path.Combine(absolutePath, pathB);
     }
+    */
 }
