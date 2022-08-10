@@ -5,7 +5,7 @@ with Helios, which is a c++ program. XML and OBJ files are created in Helios, an
 
 Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded.
 
-OBJ models can be loaded with radation applied to get following model:
+OBJ models can be loaded with radation applied to get following model: The scale is draw to apply the radiation to the tree, and the tree is rotated upon the axis shown in the red circle, in this case the 'Y' axis.
 
 ![SpinningTree](https://user-images.githubusercontent.com/81535423/183919368-8dfa26e0-ba79-4c4f-90db-bdd2a439fdf9.gif)
 
