@@ -6,5 +6,4 @@ with Helios, which is a c++ program. XML and OBJ files are created in Helios, an
 Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded.
 
 
-
-![HeliosGF2](https://user-images.githubusercontent.com/81535423/183903264-162a8b70-1351-4702-a334-f0c60d9376e3.gif)
+![LiDARgif2](https://user-images.githubusercontent.com/81535423/183904447-25accb71-ebc0-4494-9e9f-c17c3eb020fa.gif)
