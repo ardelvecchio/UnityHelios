@@ -5,5 +5,10 @@ with Helios, which is a c++ program. XML and OBJ files are created in Helios, an
 
 Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded.
 
+OBJ models can be loaded with radation applied to get following model:
+
+![SpinningTree](https://user-images.githubusercontent.com/81535423/183919368-8dfa26e0-ba79-4c4f-90db-bdd2a439fdf9.gif)
+
+Similarly, XML files can be uploaded and the corresponding LiDAR data is read from XYZ files to get the following model:
 
 ![LiDARgif2](https://user-images.githubusercontent.com/81535423/183904447-25accb71-ebc0-4494-9e9f-c17c3eb020fa.gif)
