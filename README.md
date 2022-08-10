@@ -1,11 +1,12 @@
 # UnityHelios
 
-This repository is designed as an application for Helios, the software created by Brian Bailey and the Plant Simulation Lab at UC Davis. It is used in conjunction
-with Helios, which is a c++ program. XML and OBJ files are created in Helios, and then imported into the UnityHelios program.
+This repository is designed as an application for Helios, the software created by Brian Bailey and the Plant Simulation Lab at UC Davis which can be foud here: https://baileylab.ucdavis.edu/software/helios/ 
+
+XML and OBJ files are created in Helios, and then imported into the UnityHelios program.
 
 Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded.
 
-OBJ models can be loaded with radation applied to get following model: The scale is draw to apply the radiation to the tree, and the tree is rotated upon the axis shown in the red circle, in this case the 'Y' axis.
+OBJ models can be loaded with radation applied to get following model: The scale is draw to apply the radiation to the tree, and the tree is rotated upon the axis shown in the red circle, in this case the 'Y' axis. Clicking on the circle will change the desired axis of rotation.
 
 ![SpinningTree](https://user-images.githubusercontent.com/81535423/183919368-8dfa26e0-ba79-4c4f-90db-bdd2a439fdf9.gif)
 
