@@ -8,6 +8,8 @@ Once the OBJ file or XML file has been created, they can be read by the program 
 
 OBJ models can be loaded with radation applied to get following model: The scale is draw to apply the radiation to the tree, and the tree is rotated upon the axis shown in the red circle, in this case the 'Y' axis. Clicking on the circle will change the desired axis of rotation.
 
+![WalnutTree](https://user-images.githubusercontent.com/81535423/186017997-a0e6e775-2dc4-4d16-87e3-bcff8634e314.png)
+
 ![SpinningTree](https://user-images.githubusercontent.com/81535423/183919368-8dfa26e0-ba79-4c4f-90db-bdd2a439fdf9.gif)
 
 Similarly, XML files can be uploaded and the corresponding LiDAR data is read from XYZ files to get the following model:
