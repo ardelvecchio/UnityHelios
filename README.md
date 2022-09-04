@@ -4,7 +4,7 @@ This repository is designed as an application for Helios, the software created b
 
 XML and OBJ files are created in Helios, and then imported into the UnityHelios program.
 
-Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded.
+Once the OBJ file or XML file has been created, they can be read by the program and the models can be loaded. The plant models contain tens of thousands of vertices which can customized in Helios before being parsed into a procedural mesh in the Unity application.
 
 OBJ models can be loaded with radation applied to get following model: The scale is draw to apply the radiation to the tree, and the tree is rotated upon the axis shown in the red circle, in this case the 'Y' axis. Clicking on the circle will change the desired axis of rotation.
 
