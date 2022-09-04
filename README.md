@@ -10,10 +10,10 @@ OBJ models can be loaded with radation applied to get following model: The scale
 
 ![SpinningTree](https://user-images.githubusercontent.com/81535423/183919368-8dfa26e0-ba79-4c4f-90db-bdd2a439fdf9.gif)
 
-Similarly, XML files can be uploaded and the corresponding LiDAR data is read from XYZ files to get the following model:
+Similarly, Point Clouds can be loaded. The corresponding LiDAR data is read from XYZ files to get the following model:
 
 ![LiDARgif2](https://user-images.githubusercontent.com/81535423/183904447-25accb71-ebc0-4494-9e9f-c17c3eb020fa.gif)
 
-Three Walnut Trees over a dirt patch are loaded into the scene.
+Here three Walnut Trees over a dirt patch are loaded into the scene.
 
 ![WalnutTree](https://user-images.githubusercontent.com/81535423/186017997-a0e6e775-2dc4-4d16-87e3-bcff8634e314.png)
